@@ -1,0 +1,1 @@
+// Escreva um programa em c que leia 5 valores inteiros e imprima para cada um o seu correspondente valor absoluto. Para obter o valor absoluto do número utilize a função Absoluto especificada abaixo²: 
