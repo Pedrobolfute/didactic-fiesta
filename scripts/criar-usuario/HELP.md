@@ -4,7 +4,7 @@
 
 Fala quem vai rodar todo esse script, que no caso será bash, que está localizado na pasta /bin. (Ele é um binário igual os arquivos compilados em c).
 
-## Criando usuários
+## Criar usuários
 
 **A estrutura desse comando foi:**
 comando "usuário-a-receber-comando" opção -s "caminho da opção -s" opção -p "quem ou o que a opção -p vai receber/fazer"
@@ -25,5 +25,24 @@ comando "usuário-a-receber-comando" opção -s "caminho da opção -s" opção 
   - openssl - é um comando que criptografa.
 
   - -crypt é a opção que usamos para falar ao openssl que queremos criptografar o texto que virá à frente.
-  
+
   - senhaaqui - é o texto a ser criptografado pelo openssl.
+
+## Criar grupo
+  
+- groupadd NomeDoGrupo
+
+## Adicionar usuário ao grupo
+
+- useradd usuário e-grupo-a-ser-adicionado
+
+## Criar pasta
+
+- mkdir caminho-da-pasta
+
+## Criar/dar permissões a pastas e arquivos
+
+- chmod "tipo de permissão" caminho-do-arquivo/pasta
+
+## chown
+chown "dono-da-pasta-ou-arquivo:grupo-da-pasta-ou-arquivo" pasta/arquivo
