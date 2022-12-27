@@ -2,6 +2,8 @@ html, body {
     height: 100px;
     width: 100px;
     margin: 0;
+    background-color: black;
+    color: rgb(1, 90, 255);
   }
   
   .beast {
@@ -17,4 +19,8 @@ html, body {
   
   .beast:hover {
     background-color: #CFF2F2;
+  }
+
+  #buttons{
+    padding: auto;
   }
