@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body{
+      background-color: #333;
+      border-style: solid;
+      border-color: red;
+      border-radius: 20px;
+    }
+    h1{
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: 5px;
+      color: rgb(255, 179, 179);
+      margin-left: 40%;
+    }
+
+    h3{
+      position: relative;
+      top: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: antiquewhite;
+    }
+
+    h4{
+      color: rgba(255, 255, 255, 0.937);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    ul{
+      color: rgba(245, 245, 220, 0.93);
+    }
+
+    p{
+      position: relative;
+      left: 10px;
+      font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      color: rgba(240, 248, 255, 0.921);
+    }
+
+    #btn{
+      position: relative;
+      left: 45%;
+      bottom: 5px;
+      border-style: solid;
+      border-color: rgba(255, 0, 0, 0.785);
+      border-radius: 10%;
+      background-color: red;
+      color: white;
+      font-size: larger;
+    }
+
+  </style>
+
+  <title>Introdução</title>
+</head>
+
+
+<body>
+  <h1>Epopeia</h1>
+  <p>
+    A epopeia é um gênero poético estruturado em versos e estrofes, caracterizado, sobretudo, pela exaltação de ações nobres e guerreiras feitas por pessoas de relevância social e cultural em determinado povo.
+  </p>
+  <p>
+    Foi criada na Grécia Antiga, e as epopeias Ilíada e Odisseia, cuja autoria é atribuída a Homero, constituem os modelos mais famosos desse gênero.  
+  </p>
+
+  <h3>O que é epopeia?</h3>
+  <p>
+    De origem grega, epopeia ou poesia épica designa um gênero poético predominantemente narrativo, dedicado à exaltação de feitos históricos, lendários ou míticos considerados representativos de uma determinada cultura. A palavra grega épopoia é composta pelo substantivo épos (aquilo que é expresso pela fala) e por um derivado do verbo poien (fazer, fabricar). Assim, pode-se dizer que a epopeia é a sistematização formal de uma fala essencial — o épos — proferida pelos poetas que contavam sobre a origem e a verdade do mundo.
+  </p>
+
+  <h3>Características de uma epopeia</h3>
+  <h4>Aspectos temáticos</h4>
+  <ul>
+    Aventuras de um herói e suas façanhas guerreiras, tendo como contexto a história de povos e civilizações;
+  </ul>
+  <ul>
+    Representação, em versos, de homens tidos como “superiores” em uma determinada cultura;
+  </ul>
+  <ul>
+    Presença do elemento maravilhoso, ou seja, do sobrenatural, mais especificamente, interferência dos deuses da mitologia greco-romana nas ações em torno do herói.
+  </ul>
+
+  <h4>Aspectos formais</h4>
+  <ul>
+    Poema narrativo em que a narração acontece por meio de um narrador onisciente em terceira pessoa do discurso;
+  </ul>
+  <ul>
+    Estruturado em estrofes e versos, os quais se agrupam em cantos ou livros;
+  </ul>
+  <ul>
+    Presença de uma linguagem mais objetiva;
+  </ul>
+  <ul>
+    Apresenta, geralmente, as seguintes partes: introdução, invocação, narração e epílogo.
+  </ul>
+<button type="button" id="btn">Dangerous!</button>
+
+<script>
+  const button = document.getElementById('btn');
+  const titulo = document.getElementsByTagName('h1')[0];
+  const subtitulo = document.getElementsByTagName('h3');
+  const subsubtitulo = document.getElementsByTagName('h4');
+  const paragrafo = document.getElementsByTagName('p');
+  const linha = document.getElementsByTagName('ul');
+
+  button.addEventListener('click', function(){
+    document.body.style.backgroundColor = 'white';
+    document.body.style.borderStyle = 'dashed';
+
+    titulo.style.color = 'black';
+
+    subtitulo[0].style.color = '#000';
+    subtitulo[1].style.color = '#111';
+
+    subsubtitulo[0].style.color = '#333';
+    subsubtitulo[1].style.color = '#333';
+    
+    paragrafo[0].style.color = 'black';
+    paragrafo[1].style.color = '#333';
+    paragrafo[2].style.color = '#111';
+
+    linha[0].style.color = "blue";
+    linha[1].style.color = 'blue';
+    linha[2].style.color = 'blue';
+    linha[3].style.color = 'blue';
+    linha[4].style.color = 'blue';
+    linha[5].style.color = 'blue';
+    linha[6].style.color = 'blue';
+
+    button.style.left = '-1000px';
+  });
+</script>
+</body>
+</html>
