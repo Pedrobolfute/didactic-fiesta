@@ -55,3 +55,21 @@ PROCESSO DE REQUISIÇÃO HTTP
     - ...
 5. RESPONSE BODY
     - {"nome": teste}
+
+
+## função fetch
+
+Com ele posso usar métodos para tratar a o Promisse da URL.
+Promisse é a informação/promessa esperada do servidor.
+
+## .then
+
+Método usado no fetch para pegar o retorno da url e tratar ela. Exemplo: filtrei o conteúdo do URL transformando o retorno dessa URL/Promisse em um Json.
+
+## função map
+
+Converte uma lista em ou outro tipo. Exeplo: usando a pokeApi recebi do servidor uma lista de objetos, então usei o map para converter para string, substituindo o for que percorreria a lista e o push para guardar informações necessárias do objeto em uma lista vazia.
+
+## Resultado da integraçao da pokeApi
+
+![pokeApi](./assets/img/pokeApi.gif)

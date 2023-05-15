@@ -1,71 +1,47 @@
-//const {pokemonLayout} = require('./listaPokemon')
-
-
-const offset = 0
+const pokemonList = document.getElementById('pokemonList')
+const loadMoreButton = document.getElementById('loadMoreButton')
+const maxRecord = 151
 const limit = 10
-//pokemonLayout()
+let offset = 0
 
-const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
+function loadPokemonItems(offset, limit) {
+  pokeApi.getPokemons(offset, limit).then((pokemons = []) => {
+    const newHTML = pokemons.map((pokemon) =>
+      `
+      <li class="pokemon ${pokemon.type}">
+        <span class="number">${pokemon.number}</span>
+        <span class="name">${pokemon.name}</span>
 
-fetch(url)
-  .then((response) => response.json())
-  .then(function (jsonBody) {
-    let keptPokemons = jsonBody.results
-    //console.log(keptPokemons)
+        <div class="detail">
+          <ol class="types">
+            ${pokemon.types.map((type) => `<li class="type ${type}">${type}</li>`).join('')}
+          </ol>
 
-    for (let i = 0; i <= keptPokemons.length - 2; i++) {
+          <img src="${pokemon.photo}" alt="${pokemon.name}">
+        </div>
+      </li>
+    `
+    ).join('')
 
-      let keptUrlPokemons = keptPokemons[i + 1].url
-      fetch(keptUrlPokemons)
-        .then((response) => response.json())
-        .then(function (pokeJsonBody) {
-          keptUrlPokemons = pokeJsonBody
-          console.log(keptUrlPokemons)
-
-
-          const getOl = document.getElementsByClassName('pokemons')[0]
-
-          const li = document.createElement('li')
-          li.classList.add('pokemon')
-          getOl.appendChild(li)
-
-          const span = document.createElement('span')
-          span.classList.add('number')
-          span.textContent = '#' + ('000' + keptUrlPokemons.id).slice(-3)
-          li.appendChild(span)
-
-          const span1 = document.createElement('span')
-          span1.classList.add('name')
-          span1.textContent = `${keptPokemons[i + 1].name}`
-          li.appendChild(span1)
-
-          const div = document.createElement('div')
-          div.classList.add('detail')
-          li.appendChild(div)
-
-          const ol = document.createElement('ol')
-          ol.classList.add('types')
-          div.appendChild(ol)
-
-          const liType = document.createElement('li')
-          liType.classList.add('type')
-          liType.textContent = keptUrlPokemons.types[0].type.name
-          ol.appendChild(liType)
-
-          // const liType1 = document.createElement('li')
-          // liType1.classList.add('type')
-          //   liType1.textContent = liType1.textContent = keptUrlPokemons.types[1].type.name
-          // ol.appendChild(liType1)
-
-          const img = document.createElement('img')
-          img.setAttribute('src', `${keptUrlPokemons.sprites.front_default}`)
-          console.log(`${keptUrlPokemons.sprites.front_default}`)
-
-          div.appendChild(img)
-        })
-
-
-    }
-
+    //map convert um items da lista em outro coisa, como string e array.
+    pokemonList.innerHTML += newHTML
   })
-  .catch((error) => console.error(error))
+}
+
+loadPokemonItems(offset, limit)
+
+loadMoreButton.addEventListener('click', () => {
+  offset += limit
+  
+  const qtRecordNextPage = offset + limit
+  if (qtRecordNextPage >= maxRecord) {
+    const newLimit = maxRecord - offset
+
+    loadPokemonItems(offset, newLimit)
+
+    loadMoreButton.parentElement.removeChild(loadMoreButton)
+
+  } else {
+    loadPokemonItems(offset, limit)
+  }
+})
