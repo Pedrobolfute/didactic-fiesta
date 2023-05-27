@@ -163,6 +163,11 @@ img:hover{
   max-width: 100%;
 }
 
+.pokeDetails section:nth-child(1) span:hover{
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
 .pokeDetails section:nth-child(2){
   max-height: 100%;
   max-width: 100%;
