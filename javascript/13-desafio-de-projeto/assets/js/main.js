@@ -1,11 +1,15 @@
-const pokemonList = document.getElementById('pokemonList')
+const pokemonId = document.getElementById('pokemonList')
 const loadMoreButton = document.getElementById('loadMoreButton')
-const pokemon = document.getElementsByClassName('pokemon')
 const img = document.getElementsByClassName('img')[0]
+let pokemon = document.getElementsByClassName('pokemon')
+let keepLookingPokemon = [];
+let keepNumberPokemon = -1;
 
 const maxRecord = 151
 const limit = 10
 let offset = 0
+
+const limitDetail = 1
 
 function loadPokemonItems(offset, limit) {
   pokeApi.getPokemons(offset, limit).then((pokemons = []) => {
@@ -25,11 +29,13 @@ function loadPokemonItems(offset, limit) {
       </li>
     `
     ).join('')
-    pokemonList.innerHTML += newHTML
+    pokemonId.innerHTML += newHTML
+    seePokemon()
+    unseePokemon()
+
   })
 }
 loadPokemonItems(offset, limit)
-
 
 
 loadMoreButton.addEventListener('click', () => {
@@ -49,81 +55,142 @@ loadMoreButton.addEventListener('click', () => {
 })
 
 
+function addDetails(newDetail){
+  let offsetDetail = newDetail.querySelector('.number').textContent-1
+  console.log(offsetDetail)
+
+  function loadPokemonDetails(offsetDetail, limitDetail) {
+
+    pokeApi.getPokemon(offsetDetail, limitDetail).then((pokemons = []) => {
+      const newCard = pokemons.map((pokemon) => 
+      `
+      <div class="pokeDetails">
+        <section>
+          <span>Sobre</span>
+          <span>Detalhes</span>
+          <span>outros</span>
+        </section>
+        <section>
+          <table>
+            <tbody>
+              <tr><td>Species</td><td>${console.log('pokeApi.getPokemonSpecie(1)')}</td></tr>
+              <tr><td>Height</td><td>${pokemon.height}cm</td></tr>
+              <tr><td>Weight</td><td>${pokemon.weight/10}kg</td></tr>
+              <tr><td>Abilities</td> ${pokemon.abilities.map((ability) => `<td>${ability.ability.name}</td>`).join('')}</tr>
+              <tr><td>gene</td><td>...</td></tr>
+              <tr><td></td><td></td></tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
+      
+      `).join('')
+      newDetail.innerHTML += newCard
+    })
+  }
+  loadPokemonDetails(offsetDetail, limitDetail)
+
+}
 
 
-
-
-function addDetails(){
-  const newCard = `
-  <div class="pokeDetails">
-    <section>
-        <span>Sobre</span>
-        <span>Detalhes</span>
-        <span>outros</span>
-    </section>
-    <section>
-        <table>
-            <tbody><tr><td>Species</td><td>Seed</td></tr>
-            <tr><td>Height</td><td>0.7cm</td></tr>
-            <tr><td>Weight</td><td>7kg</td></tr>
-            <tr><td>Abilities</td><td>Overgrow, Chlorophyl</td></tr>
-        </tbody></table>
-    </section>
-  </div>
+function removeDetails(){
+  const pokeDetails = document.getElementsByClassName('pokeDetails')[0]
+  pokeDetails.parentElement.removeChild(pokeDetails)
+}
   
-  `
-  newTeste.innerHTML += newCard
-  console.log(newTeste)
+  
+  function seePokemon(){
+    let getPokemon = document.querySelectorAll('.pokemon')
+      getPokemon.forEach(function(pokemon){
+      pokemon.addEventListener('click', (e) => {
+        let pokemonTarget = e.currentTarget
+        keepLookingPokemon.push(pokemonTarget)
+        keepNumberPokemon++
+        addClasses(pokemonTarget)
+        addDetails(pokemonTarget)
+        addHover(pokemonTarget)
+        console.log(pokemonTarget)
+      })
+    })
+  }
+
+  function unseePokemon(){
+    let getOffPokemon = document.querySelector('h1')
+      getOffPokemon.addEventListener('click', function(){
+        removeClasses(keepLookingPokemon[keepNumberPokemon]) 
+        removeHover(keepLookingPokemon[keepNumberPokemon]) 
+        removeDetails(keepLookingPokemon[keepNumberPokemon])
+      keepLookingPokemon.pop()
+      keepNumberPokemon--
+    })
+  }
+
+function addClasses(pokemon){
+  let name = pokemon.querySelector('.name')
+  let detail = pokemon.querySelector('.detail')
+  let types = pokemon.querySelector('.types')
+  let type = pokemon.querySelectorAll('.type')
+  let img = pokemon.querySelector('.img')
+  
+  pokemon.classList.add('pokemonAux')
+  name.classList.add('nameAux')
+  detail.classList.add('detailAux')
+  types.classList.add('typesAux')
+  type[0].classList.add('typeAux')
+  if(type[1]){type[1].classList.add('typeAux')}
+  img.classList.add('imgAux')
+  
+  pokemon.classList.remove('pokemon')
+  name.classList.remove('name')
+  detail.classList.remove('detail')
+  types.classList.remove('types')
+  type[0].classList.remove('type')
+  if(type[1]){type[0].classList.remove('type')}
+  img.classList.add('img')
+
+  let pokemons = document.querySelectorAll('.pokemon')
+  for(let i = 0; i <= pokemons.length-1; i++){
+    pokemons[i].style.pointerEvents = 'none'}
 }
 
-function newTeste(){
-  return console.log()
+function removeClasses(pokemon){
+  let name = pokemon.querySelector('.nameAux')
+  let detail = pokemon.querySelector('.detailAux')
+  let types = pokemon.querySelector('.typesAux')
+  let type = pokemon.querySelectorAll('.typeAux')
+  let img = pokemon.querySelector('.imgAux')
+  
+  
+  pokemon.classList.add('pokemon')
+  name.classList.add('name')
+  detail.classList.add('detail')
+  types.classList.add('types')
+  type[0].classList.add('type')
+  if(type[1]){type[1].classList.add('type')}
+  img.classList.add('img')
+  
+  pokemon.classList.remove('pokemonAux')
+  name.classList.remove('nameAux')
+  detail.classList.remove('detailAux')
+  types.classList.remove('typesAux')
+  type[0].classList.remove('typeAux')
+  if(type[1]){type[1].classList.remove('typeAux')}
+  img.classList.remove('imgAux')
+
+  let pokemons = document.querySelectorAll('.pokemon')
+  for(let i = 0; i <= pokemons.length-1; i++){
+    pokemons[i].style.pointerEvents = 'auto'}
+
 }
 
-
-
-function addClasses(){
-let pokemon = document.getElementsByClassName('pokemon')[0]
-let name = document.getElementsByClassName('name')[0]
-let detail = document.getElementsByClassName('detail')[0]
-let types = document.getElementsByClassName('types')[0]
-let type = document.getElementsByClassName('type')[0]
-let img = document.getElementsByClassName('img')[0]
-
-pokemon.classList.add('pokemonAux')
-name.classList.add('nameAux')
-detail.classList.add('detailAux')
-types.classList.add('typesAux')
-type.classList.add('typeAux')
-img.classList.add('imgAux')
-
-pokemon.classList.remove('pokemon')
-name.classList.remove('name')
-detail.classList.remove('detail')
-types.classList.remove('types')
-type.classList.remove('type')
-img.classList.remove('img')
+function addHover(pokemon){
+  let detailNames = pokemon.querySelectorAll('.pokeDetails span')
+  for(let i = 0; i <= detailNames.length-1; i++){
+    detailNames[i].classList.add('hoverDetail')}
 }
 
-function removeClasses(){
-  let pokemonAux = document.getElementsByClassName('pokemonAux')[0]
-  let nameAux = document.getElementsByClassName('nameAux')[0]
-  let detailAux = document.getElementsByClassName('detailAux')[0]
-  let typesAux = document.getElementsByClassName('typesAux')[0]
-  let typeAux = document.getElementsByClassName('typeAux')[0]
-  let imgAux = document.getElementsByClassName('imgAux')[0]
-
-  pokemonAux.classList.add('pokemon')
-  nameAux.classList.add('name')
-  detailAux.classList.add('detail')
-  typesAux.classList.add('types')
-  typeAux.classList.add('type')
-  imgAux.classList.add('img')
-
-  pokemonAux.classList.remove('pokemonAux')
-  nameAux.classList.remove('nameAux')
-  detailAux.classList.remove('detailAux')
-  typesAux.classList.remove('typesAux')
-  typeAux.classList.remove('typeAux')
-  imgAux.classList.remove('imgAux')
+function removeHover(pokemon){
+  let detailNames = pokemon.querySelectorAll('.podeDetails span')
+  for(let i = 0; i <= detailNames.length-1; i++){
+    detailNames[i].classList.remove('hoverDetail')}
 }

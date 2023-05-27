@@ -21,13 +21,12 @@
   padding: 2rem 1rem;
   border-radius: 1rem;
 
-  position: absolute;
+  position: fixed;
   width: 75vw;
   height: 75vh;
   z-index: 1;
-  left: 50vw;
-  top: 50vh;
-  transform: translate(-50%, -50%);
+  left: 10vw;
+  top: 10vh;
   background: -webkit-linear-gradient(bottom left, #ffffff 0%, #8cd852 100%);
   box-shadow: 0px 0px 0px 10000vh rgb(57 56 56 / 87%);
 }
@@ -46,6 +45,12 @@
 }
 
 .pokemon .number{
+  color: #000000;
+  text-align: right;
+  opacity: 0.3;
+}
+
+.pokemonAux .number{
   color: #000000;
   text-align: right;
   opacity: 0.3;
@@ -114,7 +119,7 @@
 }
 
 img:hover{
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .pagination{
@@ -161,7 +166,7 @@ img:hover{
 .pokeDetails section:nth-child(2){
   max-height: 100%;
   max-width: 100%;
-  margin-top: 20%;
+  margin-top: 5%;
 
 }
 
@@ -176,12 +181,10 @@ img:hover{
   font-weight: 400;
 }
 
-.pokeDetails section:nth-child(2) table tr td:nth-child(2){
-  padding-left: 10%;
+.pokeDetails section:nth-child(2) table tr td:not(td:first-child){
+  color: #222;
   font-weight: 300;
 }
-
-
 
 
 
@@ -192,16 +195,62 @@ img:hover{
   .pokemons{
     grid-template-columns: 1fr 1fr;
   }
+  .pokeDetails section:nth-child(2){
+    margin-top: 10%;
+  }
 }
 
 @media screen and (min-width: 576px){
   .pokemons{
     grid-template-columns: 1fr 1fr 1fr;
   }
+  .pokemonAux .detailAux .typesAux .typeAux{
+    padding: .25rem .9rem;
+    margin: .25rem 0.5rem;
+    font-size: 1rem;
+  }
+  .pokeDetails section:nth-child(2){
+    margin-top: 20%;
+  }
+
+  .pokeDetails section:nth-child(1){
+    letter-spacing: 1px;
+    font-size: 1.3rem;
+    margin-bottom: -50px;
+
+  }
+
+  .pokeDetails section:nth-child(2) table tr td:first-child{
+    font-weight: 800;
+    font-size: large;
+  }
+  
+  .pokeDetails section:nth-child(2) table tr td:nth-child(2){
+    padding-left: 2%;
+    font-weight: 500;
+  }
+  
 }
 
 @media screen and (min-width: 992px){
   .pokemons{  
     grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .pokeDetails section:nth-child(1){
+    letter-spacing: 1px;
+    font-size: 1.4rem;
+    margin-bottom: -100px;
+  }
+
+  .pokeDetails section:nth-child(2) table tr td:first-child{
+    padding-left: 50px;
+    font-weight: 800;
+    font-size: large;
+  }
+  
+  .pokeDetails section:nth-child(2) table tr td:nth-child(2){
+    padding-left: 5%;
+    font-weight: 600;
   }
 }

@@ -74,3 +74,13 @@
 .fairy:hover{
   transform: scale(1.05);
 }
+
+.hoverDetail:hover{
+  transform: scale(1.02);
+  color: rgb(255, 255, 255);
+  background-color: #333;
+  filter: brightness(1.2);
+  border-radius: 5px;
+  border: solid 3px #333;
+  cursor: pointer;
+}
