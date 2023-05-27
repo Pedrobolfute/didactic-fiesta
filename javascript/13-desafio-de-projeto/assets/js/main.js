@@ -79,7 +79,6 @@ loadMoreButton.addEventListener('click', () => {
 
 function addDetails(newDetail){
   let offsetDetail = newDetail.querySelector('.number').textContent-1
-  console.log(offsetDetail)
 
   function loadPokemonDetails(offsetDetail, limitDetail) {
 
@@ -95,11 +94,10 @@ function addDetails(newDetail){
         <section>
           <table>
             <tbody>
-              <tr><td>Species</td><td>${console.log('pokeApi.getPokemonSpecie(1)')}</td></tr>
+              <tr><td>Species</td><td>...</td></tr>
               <tr><td>Height</td><td>${pokemon.height}cm</td></tr>
               <tr><td>Weight</td><td>${pokemon.weight/10}kg</td></tr>
               <tr><td>Abilities</td> ${pokemon.abilities.map((ability) => `<td>${ability.ability.name}</td>`).join('')}</tr>
-              <tr><td>gene</td><td>...</td></tr>
               <tr><td></td><td></td></tr>
             </tbody>
           </table>
@@ -178,7 +176,6 @@ function addClasses(pokemon){
     pokemons[i].style.pointerEvents = 'none'}
 
   pokemon.style.background = `"-webkit-linear-gradient(bottom left, #ffffff 0%, #ffffff 100%)"`
-  // console.log(pokemon)
 }
 
 function removeClasses(pokemon){

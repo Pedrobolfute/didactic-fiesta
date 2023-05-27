@@ -7,10 +7,10 @@ function convertPokeApiToPokemon(pokeDetail) {
   pokemon.abilities = pokeDetail.abilities
   pokemon.height = pokeDetail.height
   pokemon.weight = pokeDetail.weight
-  pokemon.gene = pokeDetail.species
+  pokemon.gene = pokeDetail.genus
+  // console.log(pokemon.gene)
   const types = pokeDetail.types.map((typeSlot) => typeSlot.type.name)
   const type = types[0]
-  //console.log(type)
 
   pokemon.types = types
   pokemon.type = type
@@ -47,12 +47,14 @@ pokeApi.getPokemon = (offsetDetail = 0, limitDetail = 1) => {
     .then((pokemonsDetail) => pokemonsDetail)
 }
 
-// pokeApi.getPokemonSpecie = (offsetDetail = 0, limitDetail = 1) => {
-//   const url = `https://pokeapi.co/api/v2/pokemon-species?offset=${offsetDetail}&limit=${limitDetail}`
+//todo
+
+// pokeApi.getPokemon = (offsetDetail = 0) => {
+//   const url = `https://pokeapi.co/api/v2/pokemon-species/${offsetDetail}`
 //   return fetch(url)
 //     .then((response) => response.json())
-//     .then((jsonBody) => jsonBody.results)
+//     .then((jsonBody) => jsonBody.results[0].url)
 //     .then((pokemons) => pokemons.map(pokeApi.getPokemonsDetail))
 //     .then((detailRequests) => Promise.all(detailRequests))
-//     .then((pokemonsDetail) => pokemonsDetail)
+//     .then((pokemonsDetail) => console.log(pokemonsDetail))
 // }
