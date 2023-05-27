@@ -125,6 +125,7 @@ function seePokemon() {
 
 function unseePokemon() {
   let getOffPokemon = document.querySelector('h1')
+
   getOffPokemon.addEventListener('click', function () {
     removeClasses(keepLookingPokemon[keepNumberPokemon])
     removeHover(keepLookingPokemon[keepNumberPokemon])
@@ -133,6 +134,7 @@ function unseePokemon() {
     keepLookingPokemon.pop()
     keepNumberPokemon--
   })
+  
 }
 
 function addClasses(pokemon) {
