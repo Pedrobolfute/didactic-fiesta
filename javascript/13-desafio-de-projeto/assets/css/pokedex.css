@@ -27,7 +27,7 @@
   z-index: 1;
   left: 10vw;
   top: 10vh;
-  background: -webkit-linear-gradient(bottom left, #ffffff 0%, #8cd852 100%);
+  background: -webkit-linear-gradient(bottom left, #ffffff 0%, blue 100%);
   box-shadow: 0px 0px 0px 10000vh rgb(57 56 56 / 87%);
 }
 
@@ -240,7 +240,7 @@ img:hover{
   .pokeDetails section:nth-child(1){
     letter-spacing: 1px;
     font-size: 1.4rem;
-    margin-bottom: -100px;
+    margin-bottom: -120px;
   }
 
   .pokeDetails section:nth-child(2) table tr td:first-child{
@@ -252,5 +252,21 @@ img:hover{
   .pokeDetails section:nth-child(2) table tr td:nth-child(2){
     padding-left: 5%;
     font-weight: 600;
+  }
+}
+
+@media screen and (min-width: 800px){
+  .pokeDetails section:nth-child(1){
+    letter-spacing: 1px;
+    font-size: 1.4rem;
+    margin-bottom: -95px;
+  }
+}
+
+@media screen and (min-width: 1200px){
+  .pokeDetails section:nth-child(1){
+    letter-spacing: 1px;
+    font-size: 1.4rem;
+    margin-bottom: -150px;
   }
 }

@@ -1,9 +1,32 @@
+
+let cores = {
+  normal : '#bbb9ac',
+  grass :'#8cd852',
+  fire : '#fb5643',
+  water : '#57adff',
+  fighting : '#a95742',
+  flying : '#76a0ff',
+  poison : '#a95ca2',
+  ground : '#eaca55',
+  rock : '#cdbb73',
+  bug : '#c2d11f',
+  ghost : '#7773d2',
+  electric : '#fde138',
+  psychic : '#fa64b5',
+  ice : '#95f1ff',
+  dragon : '#8a75fe',
+  dark : '#8d6855',
+  steel : '#c4c2d8',
+  fairy : '#fbaeff'
+}
+
 const pokemonId = document.getElementById('pokemonList')
 const loadMoreButton = document.getElementById('loadMoreButton')
 const img = document.getElementsByClassName('img')[0]
 let pokemon = document.getElementsByClassName('pokemon')
 let keepLookingPokemon = [];
 let keepNumberPokemon = -1;
+let keepBackground
 
 const maxRecord = 151
 const limit = 10
@@ -53,7 +76,6 @@ loadMoreButton.addEventListener('click', () => {
     loadPokemonItems(offset, limit)
   }
 })
-
 
 function addDetails(newDetail){
   let offsetDetail = newDetail.querySelector('.number').textContent-1
@@ -106,10 +128,11 @@ function removeDetails(){
         let pokemonTarget = e.currentTarget
         keepLookingPokemon.push(pokemonTarget)
         keepNumberPokemon++
+        keepBackground = pokemonTarget.querySelector('li:first-child').textContent
         addClasses(pokemonTarget)
         addDetails(pokemonTarget)
         addHover(pokemonTarget)
-        console.log(pokemonTarget)
+        pokemonTarget.style.background = `-webkit-linear-gradient(bottom left, #ffffff 0%, ${cores[keepBackground]} 100%)`
       })
     })
   }
@@ -120,8 +143,10 @@ function removeDetails(){
         removeClasses(keepLookingPokemon[keepNumberPokemon]) 
         removeHover(keepLookingPokemon[keepNumberPokemon]) 
         removeDetails(keepLookingPokemon[keepNumberPokemon])
+      keepLookingPokemon[keepNumberPokemon].style.removeProperty('background')
       keepLookingPokemon.pop()
       keepNumberPokemon--
+      
     })
   }
 
@@ -151,6 +176,9 @@ function addClasses(pokemon){
   let pokemons = document.querySelectorAll('.pokemon')
   for(let i = 0; i <= pokemons.length-1; i++){
     pokemons[i].style.pointerEvents = 'none'}
+
+  pokemon.style.background = `"-webkit-linear-gradient(bottom left, #ffffff 0%, #ffffff 100%)"`
+  // console.log(pokemon)
 }
 
 function removeClasses(pokemon){
