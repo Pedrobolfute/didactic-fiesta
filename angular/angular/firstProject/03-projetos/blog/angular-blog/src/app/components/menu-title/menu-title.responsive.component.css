@@ -1,0 +1,13 @@
+/* Laptop */
+@media screen and (max-width: 1024px) {
+  .container__menu-title h1{
+    font-size: 75px;
+  }
+}
+
+/* mobile XL */
+@media screen and (max-width: 520px) {
+  .container__menu-title h1{
+    font-size: 40px;
+  }
+}
