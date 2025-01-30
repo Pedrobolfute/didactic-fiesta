@@ -1,3 +1,5 @@
+#!/bin/bash
+
 global="Pedro"
 
 function teste_local {
